@@ -56,5 +56,16 @@ public class UserResource {
         return ResponseEntity.noContent().build();
 
     }
+    // LIGADO COM UPDATE  LA EM USER SERVICE
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    //void pq retor objeto vazio ADD USUARIO É UMA MISTURA DE  DELETAR COM ADD
+    public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
+        User obj = service.fromDTO(objDto);
+        obj.setId(id);
+        obj = service.update(obj);
+
+        return ResponseEntity.noContent().build();
+    }
 }
 
