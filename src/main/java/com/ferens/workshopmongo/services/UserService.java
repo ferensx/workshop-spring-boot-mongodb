@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class UserService {
-//DEPENDENCIA AUTOMATICA DO SPRING \/ AUTOWIRED
+
     @Autowired
     private UserRepository repo;
 
