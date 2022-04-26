@@ -38,7 +38,7 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    //void pq retor objeto vazio
+    //void pq retor objeto vazio ADD USUARIO
     public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
         User obj = service.fromDTO(objDto);
         obj = service.insert(obj);
@@ -46,6 +46,15 @@ public class UserResource {
                 buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
+    }
+
+    //PARA DELETAR USUARIO LIGADA COM USER SERVICE
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        service.delete(id);
+        //para mudar  a resposta no postman lá codigo 204 usa noCotent
+        return ResponseEntity.noContent().build();
+
     }
 }
 
