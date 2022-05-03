@@ -1,5 +1,6 @@
 package com.ferens.workshopmongo.resources;
 
+import com.ferens.workshopmongo.domain.Post;
 import com.ferens.workshopmongo.domain.User;
 import com.ferens.workshopmongo.dto.UserDTO;
 import com.ferens.workshopmongo.services.UserService;
@@ -66,6 +67,12 @@ public class UserResource {
         obj = service.update(obj);
 
         return ResponseEntity.noContent().build();
+    }
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+
     }
 }
 
